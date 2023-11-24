@@ -106,6 +106,6 @@ A continuación, se detallan los paquetes y herramientas utilizados en este proy
   - Enlace al paquete: [Hero Knight - Pixel Art](https://assetstore.unity.com/packages/2d/characters/hero-knight-pixel-art-165188)
   - ![Imagen del Personaje Principal](https://assetstorev1-prd-cdn.unity3d.com/key-image/3fb94689-c52f-4e43-82af-a20f5524fecb.webp)
 
-## Efectos de sonido
+### Efectos de sonido
 - **Paquete de sonidos para juegos**: Los efectos de sonidos y musica son del siguiente paquete de la asset store de unity:
     - [Enlace al paquete](https://assetstore.unity.com/packages/audio/sound-fx/cute-ui-interact-sound-effects-pack-239488)
