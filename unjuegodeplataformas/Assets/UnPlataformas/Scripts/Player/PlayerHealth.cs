@@ -9,7 +9,8 @@ public class PlayerHealth : HealthSystem
     PlayerCollisionDetection collisions;
 
     private bool isInvulnerable = false;
-    public float invulnerabilityTime = 2f; 
+    public float invulnerabilityTime = 2f;
+
     private void Start()
     {
         animations = GetComponent<PlayerAnimations>();
@@ -19,60 +20,77 @@ public class PlayerHealth : HealthSystem
 
     public override void TakeDamage(int damage)
     {
-        if (isInvulnerable) return; // Si el jugador es invulnerable, no recibe daño
+        // Si el jugador es invulnerable, no procesar el daño.
+        if (isInvulnerable) return;
 
         currentHealth -= damage;
 
-        StartCoroutine(BecomeInvulnerable()); // Iniciar la inmunidad
+        // Iniciar la invulnerabilidad temporal.
+        StartCoroutine(BecomeInvulnerable());
 
-        // Reaccionar al daño, por ejemplo, reproducir una animación o efecto de sonido
+        // Lógica adicional al recibir daño (animaciones, sonidos, etc.).
         ReactToDamage();
 
+        // Si la salud llega a cero, ejecutar la lógica de muerte.
         if (currentHealth <= 0)
         {
-            Die(); // Llamar a Die si la salud llega a cero
+            Die();
         }
     }
 
-    // Implementación del método Die
     protected override void Die()
     {
+        // Desactivar el controlador del personaje.
         controller.enabled = false;
+
+        // Reproducir sonido de muerte.
         GameManager.Instance.soundManager.PlaySound(Audios.playerDie);
+
+        // Verificar si el objeto del juego sigue activo antes de continuar.
         if (!gameObject.activeInHierarchy) return;
+
+        // Iniciar animación de muerte y manejar eventos posteriores.
         StartCoroutine(animations.OnDeath(animEnded => {
             GameManager.Instance.OnGameOver(true);
         }));
     }
 
-    // Método adicional para reaccionar al daño
     private void ReactToDamage()
     {
+        // Devolvemos al jugador a su tamaño original
         if (currentHealth == 1) transform.localScale = new Vector3(1, 1, 1);
+
+        
         collisions.SetLevelUp(false);
         animations.OnHurt();
+
+        // Reproducir sonido de daño.
         GameManager.Instance.soundManager.PlaySound(Audios.playerHit);
     }
 
-    public void OnDie() {
+    public void OnDie()
+    {
         Die();
     }
 
     private void OnDestroy()
     {
-        StopAllCoroutines();   
+        StopAllCoroutines();
     }
 
-    public void GetLevelUp() {
+    public void GetLevelUp()
+    {
         currentHealth = 2;
     }
 
-
-    // Corrutina para manejar el estado de inmunidad
+    // Corrutina para manejar la invulnerabilidad temporal del jugador.
     private IEnumerator BecomeInvulnerable()
     {
         isInvulnerable = true;
-        yield return new WaitForSeconds(invulnerabilityTime); // Espera por un tiempo de inmunidad
+
+        // Esperar un tiempo específico antes de desactivar la invulnerabilidad.
+        yield return new WaitForSeconds(invulnerabilityTime);
+
         isInvulnerable = false;
     }
 }

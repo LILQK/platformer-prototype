@@ -4,20 +4,18 @@ using UnityEngine;
 public abstract class HealthSystem : MonoBehaviour
 {
     [SerializeField]
-    protected int maxHealth; // Máxima salud
+    protected int maxHealth; // Saludo maxima
     [SerializeField]
-    protected int currentHealth; // Salud actual
+    protected int currentHealth;
 
-    // Método para inicializar la salud
     protected virtual void Start()
     {
         currentHealth = maxHealth;
     }
 
-    // Método abstracto para manejar la recepción de daño
     public abstract void TakeDamage(int damage);
 
-    // Método para curar
+    //Metodo para curar
     public void Heal(int healingAmount)
     {
         currentHealth += healingAmount;
@@ -25,15 +23,8 @@ public abstract class HealthSystem : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-        OnHeal(healingAmount); // Método opcional para responder a la curación
     }
 
-    // Método abstracto que se llama cuando el personaje muere
-    protected abstract void Die();
+    protected abstract void Die();//Metodo abstracto de muerte
 
-    // Método opcional para responder a la curación
-    protected virtual void OnHeal(int healingAmount)
-    {
-        // Implementar lógica específica, como efectos visuales o sonoros
-    }
 }

@@ -13,6 +13,8 @@ public class UIData : MonoBehaviour
     private int totalCoins = 0;
     private int totalPoints = 0;
     private bool timeGoing = true;
+
+    //Instancia unica del script
     public static UIData Instance { get; private set; }
 
     private void Awake()
@@ -26,18 +28,20 @@ public class UIData : MonoBehaviour
     }
     void Start()
     {
-        elapsedTime = 0f;
+        elapsedTime = 0f; //Reiniciamos contador
     }
 
     void Update()
     {
-        if (!timeGoing) return;
+        if (!timeGoing) return;//No seguimos si el contador esta parado
+
         elapsedTime += Time.deltaTime;
         UpdateTimeDisplay();
     }
 
     void UpdateTimeDisplay()
     {
+        //Convertimos el float de tiempo en formato de minutos, segundos. milisegundos
         int minutes = (int)(elapsedTime / 60);
         int seconds = (int)(elapsedTime % 60);
         int milliseconds = (int)((elapsedTime * 1000) % 1000);

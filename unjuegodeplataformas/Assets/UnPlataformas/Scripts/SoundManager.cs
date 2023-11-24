@@ -17,7 +17,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private List<SoundClip> soundClips = new List<SoundClip>();
 
-    public void PlaySound(Audios sound)
+    public void PlaySound(Audios sound)//Funcion para activar sonidos de la lista personalizada de sonidos
     {
         SoundClip clipToPlay = soundClips.Find(s => s.audioType == sound);
         if (clipToPlay != null)
@@ -30,9 +30,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void StartMusic(Audios clip, bool loop) {
+    public void StartMusic(Audios clip, bool loop) { //Funcion para iniciar la musica de la lista de sonidos
         
-        if(musicSource.isPlaying)musicSource.Stop();
+        if(musicSource.isPlaying)musicSource.Stop(); 
 
         SoundClip clipToPlay = soundClips.Find(s => s.audioType == clip);
 
@@ -57,6 +57,7 @@ public class SoundManager : MonoBehaviour
     }
 }
 
+//Enum personalizado para poder elegir sonidos en el editor mas rapido
 public enum Audios
 {
     playerHit,

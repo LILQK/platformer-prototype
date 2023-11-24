@@ -12,7 +12,7 @@ public class PlayerAnimations : MonoBehaviour, IAnimations
     {
         animator = GetComponent<Animator>();
 
-        // Store hashes in the dictionary
+        //Diccionario para almacenar las animaciones y sus hashes
         animationHashes.Add("AnimState", Animator.StringToHash("AnimState"));
         animationHashes.Add("Hurt", Animator.StringToHash("Hurt"));
         animationHashes.Add("Death", Animator.StringToHash("Death"));

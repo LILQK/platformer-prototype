@@ -12,15 +12,15 @@ public class EnemyBehaviour : MonoBehaviour
     public float dropDistance = 1f;
     public LayerMask groundLayer;
 
-
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        transform.Translate(Vector2.left * speed * Time.deltaTime); //Movemos al enemigo en una direccion  siempre
 
+        //Comprobamos si hay bloque delante y debajo
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, dropDistance, groundLayer);
         RaycastHit2D frontInfo = Physics2D.Raycast(frontDetection.position, movingLeft ? Vector2.left : Vector2.right, detectionDistance, groundLayer);
 
-
+        //Si no hay suelo o hay algo que nos frena cambiamos de direccion
         if (groundInfo.collider == false || frontInfo.collider == true)
         {
             if (movingLeft)
@@ -36,6 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    //Gizmo para poder ver los rayos en el editor
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
