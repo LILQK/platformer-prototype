@@ -1,4 +1,4 @@
-# Documentación de Scripts para Unity
+# Un juego de plataformas inspirado en Super Mario Bros para NES
 
 Este documento proporciona una descripción detallada de varios scripts C# utilizados en un proyecto de Unity. Cada script tiene un propósito específico que contribuye a la funcionalidad general del juego.
 
@@ -81,3 +81,25 @@ Este documento proporciona una descripción detallada de varios scripts C# utili
     - Se aumenta de tamaño al personaje principal cuando coge una seta
     - Gestiona las llamadas a funciones de sonidos al recibir golpes y morir
 
+## Paquetes y Herramientas Utilizados
+
+A continuación, se detallan los paquetes y herramientas utilizados en este proyecto de Unity:
+
+### Cámara del Jugador
+- **Cinemachine**: Utilizado para la cámara del jugador, permitiendo una gestión más dinámica y flexible de las cámaras en el juego. 
+  - Documentación oficial: [Cinemachine](https://docs.unity3d.com/Packages/com.unity.cinemachine@2.9/manual/index.html)
+
+### Diseño de Niveles
+- **Tiles - 2D Pixel Art Platformer Biome American Forest**: Este paquete ha sido la base para el diseño de los tiles en el juego, con modificaciones para incluir bloques especiales al estilo Mario.
+  - Enlace al paquete: [2D Pixel Art Platformer Biome American Forest](https://assetstore.unity.com/packages/p/2d-pixel-art-platformer-biome-american-forest-255694)
+  - ![Imagen de Tiles](https://assetstorev1-prd-cdn.unity3d.com/key-image/f7934ebb-d577-4a7d-8e81-62651e669484.webp)
+
+### Enemigos
+- **Sprite y Animaciones del Enemigo**: Basados en el mismo paquete de tiles, con modificaciones en el animator para ajustarlo a las necesidades específicas del proyecto.
+  - Enlace al paquete: [2D Pixel Art Platformer Biome American Forest](https://assetstore.unity.com/packages/p/2d-pixel-art-platformer-biome-american-forest-255694)
+  - ![Imagen de Enemigo](https://assetstorev1-prd-cdn.unity3d.com/key-image/8757df60-3816-4a96-b47a-710be9843d72.webp)
+
+### Personaje Principal
+- **Hero Knight - Pixel Art**: El sprite y las animaciones del personaje principal provienen de este paquete. El animator ha sido personalizado para adaptarse al proyecto
+  - Enlace al paquete: [Hero Knight - Pixel Art](https://assetstore.unity.com/packages/2d/characters/hero-knight-pixel-art-165188)
+  - ![Imagen del Personaje Principal](https://assetstorev1-prd-cdn.unity3d.com/key-image/3fb94689-c52f-4e43-82af-a20f5524fecb.webp)
