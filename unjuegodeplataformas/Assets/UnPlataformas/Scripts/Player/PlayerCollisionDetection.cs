@@ -112,7 +112,8 @@ public class PlayerCollisionDetection : MonoBehaviour
 
         if (hitTile == null) return;
 
-        if (hitTile.name != usedTile.name) { //Si la Tile no es un bloque usado
+        if (hitTile.name != usedTile.name && CheckIfRewardedTile(hitTile))
+        { //Si la Tile no es un bloque usado
             int reward = 0;
 
             if (hitTile.name == questionTile.name)
@@ -127,7 +128,8 @@ public class PlayerCollisionDetection : MonoBehaviour
                 {
                     tilemap.SetTile(tilePosition, null);
                 }
-                else {
+                else
+                {
                     reward = 0;
                 }
                 // Activar lógica para monedas o potenciadores
@@ -139,6 +141,11 @@ public class PlayerCollisionDetection : MonoBehaviour
                 MarkRewardAsGiven(tilePosition);
             }
         }
+    }
+
+    private bool CheckIfRewardedTile(TileBase hitTile)
+    {
+        return (hitTile.name == questionTile.name || hitTile.name == breakableTile.name);
     }
 
     void ActivateReward(Vector2 tilePosition,int reward)
