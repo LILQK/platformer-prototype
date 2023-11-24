@@ -1,111 +1,112 @@
-# Un juego de plataformas inspirado en Super Mario Bros para NES
+# A Platform Game Inspired by Super Mario Bros for NES
+[Leer en español](./README_es.md)
 
-Este documento proporciona una descripción detallada de varios scripts C# utilizados en un proyecto de Unity. Cada script tiene un propósito específico que contribuye a la funcionalidad general del juego.
-- El juego lo podeis probar directamente en WebGL [aquí](http://ethannavarro.site/juegos/unplataformas/index.html)
-- Y aqui podeis ver un video demostracion de como funcion [Youtube](https://www.youtube.com/watch?v=GJe659JDDjU&t=1s)
+This document provides a detailed description of various C# scripts used in a Unity project. Each script serves a specific purpose that contributes to the overall functionality of the game.
+- You can try the game directly in WebGL [here](http://ethannavarro.site/juegos/unplataformas/index.html)
+- And here you can see a demonstration video of how it works [Youtube](https://www.youtube.com/watch?v=GJe659JDDjU&t=1s)
 
 ## Scripts
 
 ### HealthSystem.cs
-- **Descripción**: Gestiona el sistema de salud de personajes o enemigos.
-- **Funciones clave**:
-  - `TakeDamage(int damage)`: Aplica daño a la entidad.
-  - `Heal(int amount)`: Cura a la entidad.
-  - Métodos para verificar si la entidad está viva o muerta.
+- **Description**: Manages the health system of characters or enemies.
+- **Key Functions**:
+  - `TakeDamage(int damage)`: Applies damage to the entity.
+  - `Heal(int amount)`: Heals the entity.
+  - Methods for checking if the entity is alive or dead.
 
 ### SoundManager.cs
-- **Descripción**: Responsable de la gestión de sonidos en el juego.
-- **Funciones clave**:
-  - Reproducir, pausar y detener sonidos.
-  - Control de efectos de sonido y música de fondo.
+- **Description**: Responsible for sound management in the game.
+- **Key Functions**:
+  - Play, pause, and stop sounds.
+  - Control of sound effects and background music.
 
 ### EnemyBehaviour.cs
-- **Descripción**: Controla el comportamiento de los enemigos.
-- **Funciones clave**:
-  - Lógica para movimiento y detección del jugador.
-  - Ejecución de acciones específicas como atacar.
+- **Description**: Controls the behavior of enemies.
+- **Key Functions**:
+  - Logic for movement and player detection.
+  - Execution of specific actions like attacking.
 
 ### EnemyHealth.cs
-- **Descripción**: Gestiona la salud de los enemigos.
-- **Funciones clave**:
-  - Recibir daño.
-  - Verificar el estado de vida o muerte del enemigo.
+- **Description**: Manages the health of enemies.
+- **Key Functions**:
+  - Receive damage.
+  - Check the life or death status of the enemy.
 
 ### UIData.cs
-- **Descripción**: Maneja la interfaz de usuario y sus datos.
-- **Funciones clave**:
-  - Control de elementos visuales como la salud del jugador y puntuaciones.
+- **Description**: Handles the user interface and its data.
+- **Key Functions**:
+  - Control of visual elements like player health and scores.
 
 ### PlayerAnimations.cs
-- **Descripción**: Gestiona las animaciones del jugador.
-- **Funciones clave**:
-  - Activar animaciones basadas en acciones del jugador (saltar, correr, etc.).
+- **Description**: Manages the player's animations.
+- **Key Functions**:
+  - Activate animations based on player actions (jump, run, etc.).
 
 ### PlayerCollisionDetection.cs
-- **Descripción**: Detecta colisiones para el jugador.
-- **Funciones clave**:
-  - Interacción con el entorno del juego y otros objetos.
+- **Description**: Detects collisions for the player.
+- **Key Functions**:
+  - Interaction with the game environment and other objects.
 
 ### CharacterController2D.cs
-- **Descripción**: Controlador para personajes en 2D.
-- **Funciones clave**:
-  - Gestión del movimiento, física e interacciones en 2D.
+- **Description**: Controller for 2D characters.
+- **Key Functions**:
+  - Management of movement, physics, and 2D interactions.
 
 ### EnemyAnimations.cs
-- **Descripción**: Controla las animaciones de los enemigos.
-- **Funciones clave**:
-  - Ejecución de animaciones basadas en el estado y acciones del enemigo.
+- **Description**: Controls the animations of enemies.
+- **Key Functions**:
+  - Execution of animations based on the state and actions of the enemy.
 
 ### IAnimations.cs
-- **Descripción**: Interfaz para la implementación de animaciones.
-- **Funciones clave**:
-  - Define métodos comunes para animaciones (salto, muerte, daño, etc.).
+- **Description**: Interface for implementing animations.
+- **Key Functions**:
+  - Defines common methods for animations (jump, death, damage, etc.).
 
-### CoinScipt.cs
-- **Descripcion**: Se encarga del movimiento de las monedas
+### CoinScript.cs
+- **Description**: Responsible for the movement of coins.
 
 ### GameManager.cs
-- **Descripción**: Script con instancia estatica para que los demas scripts puedan accedere a el directamente.
-- **Funciones clave**:
-    - Define el metodo de gameover si el jugador a muerto muestra una pantalla y si gana otra.
+- **Description**: Script with a static instance so that other scripts can access it directly.
+- **Key Functions**:
+  - Defines the gameover method if the player dies, showing one screen and if wins another.
 
 ### Mushroom
-- **Descripción**: Se usa para el movimiento de la superseta
-- **Funciones clave**:
-    - Al aparecer da un salto hacia arriba y luego se mueve en una direccion aleatoria
+- **Description**: Used for the movement of the super mushroom.
+- **Key Functions**:
+  - Jumps upwards when appearing and then moves in a random direction.
 
 ### EnemyHealth.cs
-- **Descripción**: Gestiona la vida de los enemigos, al ser pisados muere.
+- **Description**: Manages the life of enemies, they die when stomped.
 
 ### PlayerHealth.cs
-- **Descripción**: Parecido al script de gestion de vida del enemigo, pero este tiene la opcion de aumentar de vida al personaje
-- **Funciones clave**:
-    - Se aumenta de tamaño al personaje principal cuando coge una seta
-    - Gestiona las llamadas a funciones de sonidos al recibir golpes y morir
+- **Description**: Similar to the enemy health management script, but this one has the option to increase the life of the character.
+- **Key Functions**:
+  - Increases the size of the main character when picking a mushroom.
+  - Manages calls to sound functions when taking hits and dying.
 
-## Paquetes y Herramientas Utilizados
+## Packages and Tools Used
 
-A continuación, se detallan los paquetes y herramientas utilizados en este proyecto de Unity:
+Below are the packages and tools used in this Unity project:
 
-### Cámara del Jugador
-- **Cinemachine**: Utilizado para la cámara del jugador, permitiendo una gestión más dinámica y flexible de las cámaras en el juego. 
-  - Documentación oficial: [Cinemachine](https://docs.unity3d.com/Packages/com.unity.cinemachine@2.9/manual/index.html)
+### Player Camera
+- **Cinemachine**: Used for the player's camera, allowing more dynamic and flexible management of cameras in the game. 
+  - Official documentation: [Cinemachine](https://docs.unity3d.com/Packages/com.unity.cinemachine@2.9/manual/index.html)
 
-### Diseño de Niveles
-- **Tiles - 2D Pixel Art Platformer Biome American Forest**: Este paquete ha sido la base para el diseño de los tiles en el juego, con modificaciones para incluir bloques especiales al estilo Mario.
-  - Enlace al paquete: [2D Pixel Art Platformer Biome American Forest](https://assetstore.unity.com/packages/p/2d-pixel-art-platformer-biome-american-forest-255694)
-  - ![Imagen de Tiles](https://assetstorev1-prd-cdn.unity3d.com/key-image/f7934ebb-d577-4a7d-8e81-62651e669484.webp)
+### Level Design
+- **Tiles - 2D Pixel Art Platformer Biome American Forest**: This package has been the basis for the design of tiles in the game, with modifications to include special blocks Mario-style.
+  - Package link: [2D Pixel Art Platformer Biome American Forest](https://assetstore.unity.com/packages/p/2d-pixel-art-platformer-biome-american-forest-255694)
+  - ![Image of Tiles](https://assetstorev1-prd-cdn.unity3d.com/key-image/f7934ebb-d577-4a7d-8e81-62651e669484.webp)
 
-### Enemigos
-- **Sprite y Animaciones del Enemigo**: Basados en el mismo paquete de tiles, con modificaciones en el animator para ajustarlo a las necesidades específicas del proyecto.
-  - Enlace al paquete: [2D Pixel Art Platformer Biome American Forest](https://assetstore.unity.com/packages/p/2d-pixel-art-platformer-biome-american-forest-255694)
-  - ![Imagen de Enemigo](https://assetstorev1-prd-cdn.unity3d.com/key-image/8757df60-3816-4a96-b47a-710be9843d72.webp)
+### Enemies
+- **Enemy Sprite and Animations**: Based on the same tile package, with modifications in the animator to fit the specific needs of the project.
+  - Package link: [2D Pixel Art Platformer Biome American Forest](https://assetstore.unity.com/packages/p/2d-pixel-art-platformer-biome-american-forest-255694)
+  - ![Image of Enemy](https://assetstorev1-prd-cdn.unity3d.com/key-image/8757df60-3816-4a96-b47a-710be9843d72.webp)
 
-### Personaje Principal
-- **Hero Knight - Pixel Art**: El sprite y las animaciones del personaje principal provienen de este paquete. El animator ha sido personalizado para adaptarse al proyecto
-  - Enlace al paquete: [Hero Knight - Pixel Art](https://assetstore.unity.com/packages/2d/characters/hero-knight-pixel-art-165188)
-  - ![Imagen del Personaje Principal](https://assetstorev1-prd-cdn.unity3d.com/key-image/3fb94689-c52f-4e43-82af-a20f5524fecb.webp)
+### Main Character
+- **Hero Knight - Pixel Art**: The sprite and animations of the main character come from this package. The animator has been customized to fit the project.
+  - Package link: [Hero Knight - Pixel Art](https://assetstore.unity.com/packages/2d/characters/hero-knight-pixel-art-165188)
+  - ![Image of Main Character](https://assetstorev1-prd-cdn.unity3d.com/key-image/3fb94689-c52f-4e43-82af-a20f5524fecb.webp)
 
-### Efectos de sonido
-- **Paquete de sonidos para juegos**: Los efectos de sonidos y musica son del siguiente paquete de la asset store de unity:
-    - [Enlace al paquete](https://assetstore.unity.com/packages/audio/sound-fx/cute-ui-interact-sound-effects-pack-239488)
+### Sound Effects
+- **Game Sound Effects Package**: The sound effects and music are from the following Unity asset store package:
+  - [Package link](https://assetstore.unity.com/packages/audio/sound-fx/cute-ui-interact-sound-effects-pack-239488)
