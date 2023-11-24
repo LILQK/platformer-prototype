@@ -7,9 +7,23 @@ public class UIData : MonoBehaviour
 {
     [SerializeField] private TMP_Text coins;
     [SerializeField] private TMP_Text time;
+    [SerializeField] private TMP_Text points;
 
     private float elapsedTime;
     private int totalCoins = 0;
+    private int totalPoints = 0;
+    private bool timeGoing = true;
+    public static UIData Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
+    }
     void Start()
     {
         elapsedTime = 0f;
@@ -17,6 +31,7 @@ public class UIData : MonoBehaviour
 
     void Update()
     {
+        if (!timeGoing) return;
         elapsedTime += Time.deltaTime;
         UpdateTimeDisplay();
     }
@@ -32,6 +47,15 @@ public class UIData : MonoBehaviour
 
     public void AddCoin() {
         totalCoins++;
-        coins.text = totalCoins.ToString();
+        coins.text = "Coins: " + totalCoins.ToString();
+    }
+
+    public void AddPoints(int p) {
+        totalPoints += p;
+        points.text = "Points:\n " + totalPoints.ToString("D6");
+    }
+
+    public void StopTimer() {
+        timeGoing = false;
     }
 }

@@ -6,15 +6,24 @@ public class PlayerHealth : HealthSystem
 {
     PlayerAnimations animations;
     CharacterController2D controller;
+    PlayerCollisionDetection collisions;
+
+    private bool isInvulnerable = false;
+    public float invulnerabilityTime = 2f; 
     private void Start()
     {
         animations = GetComponent<PlayerAnimations>();
         controller = GetComponent<CharacterController2D>();
+        collisions = GetComponent<PlayerCollisionDetection>();
     }
-    // Implementación del método TakeDamage
+
     public override void TakeDamage(int damage)
     {
+        if (isInvulnerable) return; // Si el jugador es invulnerable, no recibe daño
+
         currentHealth -= damage;
+
+        StartCoroutine(BecomeInvulnerable()); // Iniciar la inmunidad
 
         // Reaccionar al daño, por ejemplo, reproducir una animación o efecto de sonido
         ReactToDamage();
@@ -32,14 +41,15 @@ public class PlayerHealth : HealthSystem
         GameManager.Instance.soundManager.PlaySound(Audios.playerDie);
         if (!gameObject.activeInHierarchy) return;
         StartCoroutine(animations.OnDeath(animEnded => {
-            GameManager.Instance.OnGameOver(false);
+            GameManager.Instance.OnGameOver(true);
         }));
-        // Opcional: reiniciar el nivel o llevar a cabo otras acciones después de la muerte
     }
 
     // Método adicional para reaccionar al daño
     private void ReactToDamage()
     {
+        if (currentHealth == 1) transform.localScale = new Vector3(1, 1, 1);
+        collisions.SetLevelUp(false);
         animations.OnHurt();
         GameManager.Instance.soundManager.PlaySound(Audios.playerHit);
     }
@@ -51,5 +61,18 @@ public class PlayerHealth : HealthSystem
     private void OnDestroy()
     {
         StopAllCoroutines();   
+    }
+
+    public void GetLevelUp() {
+        currentHealth = 2;
+    }
+
+
+    // Corrutina para manejar el estado de inmunidad
+    private IEnumerator BecomeInvulnerable()
+    {
+        isInvulnerable = true;
+        yield return new WaitForSeconds(invulnerabilityTime); // Espera por un tiempo de inmunidad
+        isInvulnerable = false;
     }
 }

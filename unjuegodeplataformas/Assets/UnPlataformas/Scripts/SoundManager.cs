@@ -49,6 +49,12 @@ public class SoundManager : MonoBehaviour
     public bool IsMusicPlaying() {
         return musicSource.isPlaying;
     }
+
+    private void OnDestroy()
+    {
+        sfxSource.Stop();
+        musicSource.Stop();
+    }
 }
 
 public enum Audios

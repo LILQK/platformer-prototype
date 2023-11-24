@@ -36,6 +36,9 @@ public class EnemyHealth : HealthSystem
         rb.bodyType = RigidbodyType2D.Static;
         StartCoroutine(animations.OnDeath(animEnded => {
             if (animEnded) {
+
+                UIData.Instance.AddPoints(100);
+
                 // Destruir o desactivar el enemigo
                 Destroy(gameObject);
             }

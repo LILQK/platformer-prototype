@@ -22,11 +22,13 @@ public class CharacterController2D : MonoBehaviour
     public float jumpCooldown;
 
     public Transform GroundCheck;
+    public TrailRenderer trail;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animations = GetComponent<PlayerAnimations>();
+        trail.emitting = false;
     }
 
     // Update is called once per frame
@@ -107,5 +109,7 @@ public class CharacterController2D : MonoBehaviour
         animations.UpdateAnimState(state);
 
         animations.UpdateGrounded(isGrounded);
+
+        trail.emitting = !isGrounded;
     }
 }

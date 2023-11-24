@@ -19,6 +19,7 @@ public class PlayerAnimations : MonoBehaviour, IAnimations
         animationHashes.Add("AirSpeedY", Animator.StringToHash("AirSpeedY"));
         animationHashes.Add("Grounded", Animator.StringToHash("Grounded"));
         animationHashes.Add("Jump", Animator.StringToHash("Jump"));
+        animationHashes.Add("isDead", Animator.StringToHash("isDead"));
     }
 
     public void OnJump()
@@ -30,10 +31,12 @@ public class PlayerAnimations : MonoBehaviour, IAnimations
     {
 
         animator.SetTrigger(animationHashes["Death"]);
+        animator.SetBool(animationHashes["isDead"],true);
 
         yield return new WaitForSeconds(GetAnimationLength());
 
         animEnded?.Invoke(true);
+        
     }
 
     public void OnHurt()
