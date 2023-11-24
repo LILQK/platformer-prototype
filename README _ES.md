@@ -1,5 +1,5 @@
 # Un juego de plataformas inspirado en Super Mario Bros para NES
-[Read in English](./README.md)
+[Read in English](https://gitlab.com/ethanavarro/pec-2-un-juego-de-plataformas/-/blob/main/README%20_ES.md)
 
 Este documento proporciona una descripción detallada de varios scripts C# utilizados en un proyecto de Unity. Cada script tiene un propósito específico que contribuye a la funcionalidad general del juego.
 - El juego lo podeis probar directamente en WebGL [aquí](http://ethannavarro.site/juegos/unplataformas/index.html)
