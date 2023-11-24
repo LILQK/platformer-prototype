@@ -1,8 +1,9 @@
 # Un juego de plataformas inspirado en Super Mario Bros para NES
 
 Este documento proporciona una descripción detallada de varios scripts C# utilizados en un proyecto de Unity. Cada script tiene un propósito específico que contribuye a la funcionalidad general del juego.
-- El juego lo podeis probar directamente en WebGL [aquí](http://ethannavarro.site/juegos/unplataformas/index.html)
-- Y aqui podeis ver un video demostracion de como funcion [Youtube](https://www.youtube.com/watch?v=GJe659JDDjU&t=1s)
+El juego lo podeis probar directamente en WebGL [aquí](http://ethannavarro.site/juegos/unplataformas/index.html)
+Y aqui podeis ver un video demostracion de como funcion [Youtube](https://www.youtube.com/watch?v=GJe659JDDjU&t=1s)
+
 ## Scripts
 
 ### HealthSystem.cs
