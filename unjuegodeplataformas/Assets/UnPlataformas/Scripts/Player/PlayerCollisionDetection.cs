@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerCollisionDetection : MonoBehaviour
 {
@@ -8,6 +9,13 @@ public class PlayerCollisionDetection : MonoBehaviour
     private PlayerHealth playerHealth;
     [SerializeField] private PolygonCollider2D bounds;
     public float threshHold;
+
+    public Tilemap tilemap;
+    public TileBase breakableTile;
+    public TileBase questionTile;
+    public TileBase usedTile;
+    private bool isLevelUp;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,6 +38,47 @@ public class PlayerCollisionDetection : MonoBehaviour
                 playerHealth.TakeDamage(1);
             }
         }
+
+        if (collision.gameObject.CompareTag("EspecialBlock"))
+        {
+
+            foreach (ContactPoint2D hit in collision.contacts)
+            {
+                Debug.Log("Hit con bloque especial" + " " + hit.normal.y);
+                Vector3 hitPosition = Vector3.zero;
+                if (hit.normal.y < -0.5) // Verifica si el golpe viene desde abajo
+                {
+                    hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
+                    hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
+
+                    HandleBlockHit(hit.point);
+                }
+            }
+        }
+    }
+    void HandleBlockHit(Vector2 hitPoint)
+    {
+        Vector3Int tilePosition = tilemap.WorldToCell(hitPoint);
+        TileBase hitTile = tilemap.GetTile(tilePosition);
+
+        if (hitTile == questionTile)
+        {
+            ActivateReward(tilePosition);
+            tilemap.SetTile(tilePosition, usedTile); // Cambiar a bloque usado
+        }
+        else if (hitTile == breakableTile && isLevelUp)
+        {
+            // Destruir bloque si Mario es Super
+            tilemap.SetTile(tilePosition, null);
+            // Activar lógica para monedas o potenciadores
+        }
+    }
+
+    void ActivateReward(Vector3Int tilePosition)
+    {
+        // Aquí debes implementar la lógica para activar la recompensa
+        // Esto podría incluir generar monedas, potenciadores, etc.
+        Debug.Log("Recompensa activada en la posición: " + tilePosition);
     }
 
     private bool IsPlayerOnTop(Collision2D collision)

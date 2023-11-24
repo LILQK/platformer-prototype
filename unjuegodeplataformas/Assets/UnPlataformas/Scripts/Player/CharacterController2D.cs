@@ -54,7 +54,7 @@ public class CharacterController2D : MonoBehaviour
     private void HandleMovement() {
         float currentMaxSpeed = isGrounded ? MaxSpeed : AirMaxSpeed;
         float currentAcceleration = isGrounded ? Acceleration : AirAcceleration;
-
+        
         if (Mathf.Abs(rb.velocity.x) < currentMaxSpeed)
         {
             rb.AddForce(Vector2.right * movement * currentAcceleration);
@@ -62,6 +62,15 @@ public class CharacterController2D : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * currentMaxSpeed, rb.velocity.y);
+        }
+
+        if (rb.velocity.x >= 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else {
+            transform.eulerAngles = new Vector3(0, -180, 0);
+
         }
     }
     private void HandleJump() {

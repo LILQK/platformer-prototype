@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,6 +6,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField]private Canvas gameOverCanvas;
+
+    public SoundManager soundManager;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -15,18 +17,22 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        soundManager = GetComponentInChildren<SoundManager>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         gameOverCanvas.enabled = false;
+        soundManager.StartMusic(Audios.initialMusic,false);
+        StartCoroutine(WaitAndPlay());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    IEnumerator WaitAndPlay() {
+
+        yield return new WaitWhile(soundManager.IsMusicPlaying);
+
+        soundManager.StartMusic(Audios.musicLoop, true);
     }
 
     public void OnGameOver(bool die) {

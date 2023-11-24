@@ -29,6 +29,8 @@ public class PlayerHealth : HealthSystem
     protected override void Die()
     {
         controller.enabled = false;
+        GameManager.Instance.soundManager.PlaySound(Audios.playerDie);
+        if (!gameObject.activeInHierarchy) return;
         StartCoroutine(animations.OnDeath(animEnded => {
             GameManager.Instance.OnGameOver(false);
         }));
@@ -39,9 +41,15 @@ public class PlayerHealth : HealthSystem
     private void ReactToDamage()
     {
         animations.OnHurt();
+        GameManager.Instance.soundManager.PlaySound(Audios.playerHit);
     }
 
     public void OnDie() {
         Die();
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();   
     }
 }

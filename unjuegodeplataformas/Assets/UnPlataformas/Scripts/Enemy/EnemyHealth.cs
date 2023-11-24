@@ -4,10 +4,12 @@ public class EnemyHealth : HealthSystem
 {
     private IAnimations animations;
     private BoxCollider2D _collider;
+    private Rigidbody2D rb;
     private void Start()
     {
         animations = GetComponentInChildren < EnemyAnimations > ();
         _collider = GetComponent<BoxCollider2D> ();
+        rb = GetComponent<Rigidbody2D> ();
     }
     // Implementaci�n del m�todo TakeDamage
     public override void TakeDamage(int damage)
@@ -29,8 +31,9 @@ public class EnemyHealth : HealthSystem
     protected override void Die()
     {
 
-        // L�gica de muerte del enemigo, como reproducir una animaci�n, desactivar el GameObject, etc.
-        Debug.Log("La seta enemiga ha muerto");
+        GameManager.Instance.soundManager.PlaySound(Audios.enemyDie);
+        _collider.enabled = false;
+        rb.bodyType = RigidbodyType2D.Static;
         StartCoroutine(animations.OnDeath(animEnded => {
             if (animEnded) {
                 // Destruir o desactivar el enemigo
@@ -43,7 +46,6 @@ public class EnemyHealth : HealthSystem
     // M�todo adicional para reaccionar al da�o
     private void ReactToDamage()
     {
-        // Implementar l�gica espec�fica, como un efecto visual o sonido
-        Debug.Log("La seta enemiga ha recibido da�o");
+        GameManager.Instance.soundManager.PlaySound(Audios.enemyHit);
     }
 }
