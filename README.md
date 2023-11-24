@@ -1,5 +1,5 @@
 # A Platform Game Inspired by Super Mario Bros for NES
-[Leer en español](./README_es.md)
+[Leer en español](./README_ES.md)
 
 This document provides a detailed description of various C# scripts used in a Unity project. Each script serves a specific purpose that contributes to the overall functionality of the game.
 - You can try the game directly in WebGL [here](http://ethannavarro.site/juegos/unplataformas/index.html)
